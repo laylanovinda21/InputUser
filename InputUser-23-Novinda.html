@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InputUser-23-Novinda</title>
+</head>
+<body>
+  <h1>XI RPL 4/23</h1>
+  <h2>Pendaftaran hiGirls!</h2>
+  <div>
+    <form>
+      <table>
+        <tr>
+          <td><label for="nama">Nama Lengkap</label></td>
+          <td>:</td>
+          <td><input type="text" id="name"></td>
+        </tr>
+        <tr>
+          <td><label for="email">E-mail</label></td>
+          <td>:</td>
+          <td><input type="text" id="email"></td>
+        </tr>
+        <tr>
+          <td><label for="negara">Negara</label></td>
+          <td>:</td>
+          <td><input type="text" id="negaraa" list="negara"></td>
+          <datalist id="negara">
+            <option value="Indonesia">Indonesia</option>
+			<option value="Filipina">Filipina</option>
+			<option value="Brunei Darussalam">Brunei Darussalam</option>
+			<option value="Kamboja">Kamboja</option>
+			<option value="Mynmar">Myanmar</option>
+			<option value="Malaysia">Malaysia</option>
+            <option value="Singapura">Singapura</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Laos">Laos</option>
+          </datalist>
+        </tr>
+        <tr>
+          <td><label for="tahun_lahir">Tahun Lahir</label></td>
+			<td>:</td>
+            <td><input type="number" min="1999" id="tahun_lahir"/>
+            </td>
+        </tr>
+        <tr>
+          <td><label>Jenis Kelamin</label></td>
+          <td>:</td>
+          <td>
+            <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Pria">Pria<br>
+            <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Wanita">Wanita<br>
+            <input type="radio" id="jenis_kelamin" name="jenis_kelamin" value="Tidak Terdefinisi">Tidak Terdefinisi
+          </td>
+        </tr>
+        <tr>
+          <td><button type="button" onclick="ambilData()">Daftar</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id="tampilan">
+  </div>
+
+
+  <script>
+    function ambilData() {
+      var nama = document.getElementById('name');
+      var email = document.getElementById('email');
+      var negara = document.getElementById('negaraa', 'negara');
+      var tahun_lahir = document.getElementById('tahun_lahir');
+      var jenis_kelamin = document.getElementsByName('jenis_kelamin');
+
+      var opsinama = nama.value;
+      var opsiemail = email.value;
+      var opsinegara = negara.value;
+      var opsiumur = tahun_lahir.value;
+      var realumur = 2020-tahun_lahir.value;
+      var opsijeniskelamin = '';
+      for (var i = 0; i < jenis_kelamin.length; i++) {
+        if(jenis_kelamin[i].checked == true){
+          opsijeniskelamin = jenis_kelamin[i].value;
+          break;
+        }
+      }
+      let tampilkan = document.getElementById('tampilan');
+      let tertampilkan = '';
+      if(opsinama == '' ||
+      opsiemail == '' ||
+      opsinegara == '' ||
+      opsiumur == '' ||
+      opsijeniskelamin == '') {
+        if(opsinama == '') tertampilkan += '<b>Kamu belum mengisi nama</b><br>';
+        if(opsiemail == '') tertampilkan += '<b>Kamu belum mengisi email</b><br>';
+        if(opsinegara == '') tertampilkan += '<b>Kamu belum mengisi nama negara</b><br>';
+        if(opsiumur == '') tertampilkan += '<b>Kamu belum mengisi tahun lahir</b><br>';
+        if(opsijeniskelamin == '') tertampilkan += '<b>Kamu belum memilih jenis kelamin</b>';
+      }
+      else {
+        tertampilkan += `<b><h3>Selamat Datang di hiGirls!</h3>
+        <table>
+		      <tr>
+		        <td>Nama Lengkap</td>
+		        <td>:</td>
+		        <td>${opsinama}</td>
+		      </tr>
+		      <tr>
+		        <td>Email </td>
+		        <td>:</td>
+		        <td>${opsiemail}</td>
+		      </tr>
+		      <tr>
+		        <td>Jenis Kelamin </td>
+		        <td>:</td>
+		        <td>${opsijeniskelamin}</td>
+		      </tr>
+		      <tr>
+		        <td>Negara </td>
+		        <td>:</td>
+		        <td>${opsinegara}</td>
+		      </tr>
+		      <tr>
+		        <td>Umur </td>
+		        <td>:</td>
+		        <td>${realumur}</td>
+		      </tr>
+		    </table>`;
+		  }
+		tampilkan.innerHTML = tertampilkan;
+	}
+</script>
+</body>
+</html>
